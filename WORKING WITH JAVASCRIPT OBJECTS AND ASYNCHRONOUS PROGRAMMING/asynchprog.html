@@ -1,0 +1,379 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ASYNCHRONOUS PROGRAMMING</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            max-width: 600px;
+            margin: 30px auto;
+            padding: 20px;
+            background-color: #f5f5f5;
+        }
+        .exercise {
+            background-color: white;
+            padding: 20px;
+            margin-bottom: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #333;
+            margin-top: 0;
+        }
+        input {
+            padding: 10px;
+            width: 100%;
+            font-size: 16px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            cursor: pointer;
+            border-radius: 4px;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        .result {
+            margin-top: 15px;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            display: none;
+        }
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+            display: block;
+        }
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+            display: block;
+        }
+        .loading {
+            background-color: #d1ecf1;
+            color: #0c5460;
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <h1>II.	ASYNCHRONOUS PROGRAMMING</h1>
+
+    <!-- A.	We first have an input field asking for the user’s name. Create a Promise that rejects if that input field is empty, and resolves with the input, greeting the user with “good day, <name of user here>!” on the DOM -->
+    <div class="exercise">
+        <h2>Basic Name Greeting</h2>
+        <input type="text" id="input1" placeholder="Enter your name">
+        <button onclick="exercise1()">Submit</button>
+        <div class="result" id="result1"></div>
+    </div>
+
+    <!-- B.	We first have an input field asking for the user’s name. Create a Promise that rejects if that input field is empty, and resolves after 5 seconds with the input, greeting the user with “good day, <name of user here>!” on the DOM. -->
+    <div class="exercise">
+        <h2>Name Greeting (5 second delay)</h2>
+        <input type="text" id="input2" placeholder="Enter your name">
+        <button onclick="exercise2()">Submit</button>
+        <div class="result" id="result2"></div>
+    </div>
+
+    <!-- C.	We first have an input field asking for the user’s name. Create a Promise that rejects if that input field is empty, and resolves after 7 seconds with the input, greeting the user with “good day, <name of user here>!” on the DOM.-->
+    <div class="exercise">
+        <h2>Name Greeting (7 second delay)</h2>
+        <input type="text" id="input3" placeholder="Enter your name">
+        <button onclick="exercise3()">Submit</button>
+        <div class="result" id="result3"></div>
+    </div>
+
+    <!-- D.	We first have an input field asking for the user’s name. Create a Promise that rejects if that input field is empty, and resolves with the input being in uppercase format, greeting the user with “good day, <name of user here>!” on the DOM. -->
+    <div class="exercise">
+        <h2>Uppercase Name Greeting</h2>
+        <input type="text" id="input4" placeholder="Enter your name">
+        <button onclick="exercise4()">Submit</button>
+        <div class="result" id="result4"></div>
+    </div>
+
+    <!-- E.	We first have an input field asking for the user’s name. Create a Promise that rejects if that input field is empty and is less than five characters, and resolves with the input being in uppercase format, greeting the user with “good day, <name of user here>!” on the DOM -->
+    <div class="exercise">
+        <h2>Uppercase Name (min 5 characters)</h2>
+        <input type="text" id="input5" placeholder="Enter your name (min 5 chars)">
+        <button onclick="exercise5()">Submit</button>
+        <div class="result" id="result5"></div>
+    </div>
+
+    <!-- F.	We first have an input field asking for the user’s name. Create a Promise that rejects if that input field is empty and is less than five characters, and resolves with the input being in reversed format, greeting the user with “good day, <name of user here>!” on the DOM. -->
+    <div class="exercise">
+        <h2>Reversed Name (min 5 characters)</h2>
+        <input type="text" id="input6" placeholder="Enter your name (min 5 chars)">
+        <button onclick="exercise6()">Submit</button>
+        <div class="result" id="result6"></div>
+    </div>
+
+    <!-- G.	We first have an input field asking the user to input a number. Create a Promise that rejects if the inputted value is not an integer and resolves with the integer input being squared, printing the string “<number inputted> is <squared number> when doubled ” on the DOM. -->
+    <div class="exercise">
+        <h2>Square a Number</h2>
+        <input type="text" id="input7" placeholder="Enter a number">
+        <button onclick="exercise7()">Submit</button>
+        <div class="result" id="result7"></div>
+    </div>
+
+    <!-- H.	We first have an input field asking the user to input a number. Create a Promise that rejects if the inputted value is not an integer and resolves after 5 seconds with the integer input being cubed, printing the string “<number inputted> is <cubed number> when cubed” on the DOM.  -->
+    <div class="exercise">
+        <h2>Cube a Number (5 second delay)</h2>
+        <input type="text" id="input8" placeholder="Enter a number">
+        <button onclick="exercise8()">Submit</button>
+        <div class="result" id="result8"></div>
+    </div>
+
+    <!-- I.	We first have an input field asking the user to input a number. Create a Promise that rejects if the inputted value is not between 1 and 10 and resolves by printing the string “Yes <number inputted> is between 1 and 10” on the DOM. If the user fails three times to give a number between 1 and 10, we’ll just print “You already failed three times, so no chances anymore”. -->
+    <div class="exercise">
+        <h2>Number Between 1 and 10 (3 attempts)</h2>
+        <input type="text" id="input9" placeholder="Enter a number (1-10)">
+        <button onclick="exercise9()">Submit</button>
+        <div class="result" id="result9"></div>
+    </div>
+
+    <script>
+        let failCount = 0;
+
+        // Exercise 1
+        function exercise1() {
+            const name = document.getElementById('input1').value;
+            const result = document.getElementById('result1');
+            
+            new Promise((resolve, reject) => {
+                if (name === "" || name.trim() === "") {
+                    reject("Error: Name cannot be empty!");
+                } else {
+                    resolve(`Good day, ${name}!`);
+                }
+            })
+            .then(greeting => {
+                result.textContent = greeting;
+                result.className = 'result success';
+            })
+            .catch(error => {
+                result.textContent = error;
+                result.className = 'result error';
+            });
+        }
+
+        // Exercise 2
+        function exercise2() {
+            const name = document.getElementById('input2').value;
+            const result = document.getElementById('result2');
+            
+            result.textContent = "Please wait 5 seconds...";
+            result.className = 'result loading';
+            
+            new Promise((resolve, reject) => {
+                if (name === "" || name.trim() === "") {
+                    reject("Error: Name cannot be empty!");
+                } else {
+                    setTimeout(() => {
+                        resolve(`Good day, ${name}!`);
+                    }, 5000);
+                }
+            })
+            .then(greeting => {
+                result.textContent = greeting;
+                result.className = 'result success';
+            })
+            .catch(error => {
+                result.textContent = error;
+                result.className = 'result error';
+            });
+        }
+
+        // Exercise 3
+        function exercise3() {
+            const name = document.getElementById('input3').value;
+            const result = document.getElementById('result3');
+            
+            result.textContent = "Please wait 7 seconds...";
+            result.className = 'result loading';
+            
+            new Promise((resolve, reject) => {
+                if (name === "" || name.trim() === "") {
+                    reject("Error: Name cannot be empty!");
+                } else {
+                    setTimeout(() => {
+                        resolve(`Good day, ${name}!`);
+                    }, 7000);
+                }
+            })
+            .then(greeting => {
+                result.textContent = greeting;
+                result.className = 'result success';
+            })
+            .catch(error => {
+                result.textContent = error;
+                result.className = 'result error';
+            });
+        }
+
+        // Exercise 4
+        function exercise4() {
+            const name = document.getElementById('input4').value;
+            const result = document.getElementById('result4');
+            
+            new Promise((resolve, reject) => {
+                if (name === "" || name.trim() === "") {
+                    reject("Error: Name cannot be empty!");
+                } else {
+                    resolve(`Good day, ${name.toUpperCase()}!`);
+                }
+            })
+            .then(greeting => {
+                result.textContent = greeting;
+                result.className = 'result success';
+            })
+            .catch(error => {
+                result.textContent = error;
+                result.className = 'result error';
+            });
+        }
+
+        // Exercise 5
+        function exercise5() {
+            const name = document.getElementById('input5').value;
+            const result = document.getElementById('result5');
+            
+            new Promise((resolve, reject) => {
+                if (name === "" || name.trim() === "" || name.trim().length < 5) {
+                    reject("Error: Name cannot be empty and must be at least 5 characters!");
+                } else {
+                    resolve(`Good day, ${name.toUpperCase()}!`);
+                }
+            })
+            .then(greeting => {
+                result.textContent = greeting;
+                result.className = 'result success';
+            })
+            .catch(error => {
+                result.textContent = error;
+                result.className = 'result error';
+            });
+        }
+
+        // Exercise 6
+        function exercise6() {
+            const name = document.getElementById('input6').value;
+            const result = document.getElementById('result6');
+            
+            new Promise((resolve, reject) => {
+                if (name === "" || name.trim() === "" || name.trim().length < 5) {
+                    reject("Error: Name cannot be empty and must be at least 5 characters!");
+                } else {
+                    const reversed = name.split('').reverse().join('');
+                    resolve(`Good day, ${reversed}!`);
+                }
+            })
+            .then(greeting => {
+                result.textContent = greeting;
+                result.className = 'result success';
+            })
+            .catch(error => {
+                result.textContent = error;
+                result.className = 'result error';
+            });
+        }
+
+        // Exercise 7
+        function exercise7() {
+            const input = document.getElementById('input7').value;
+            const result = document.getElementById('result7');
+            
+            new Promise((resolve, reject) => {
+                const num = parseInt(input);
+                if (isNaN(num) || input.trim() === "") {
+                    reject("Error: Please enter a valid integer!");
+                } else {
+                    const squared = num * num;
+                    resolve(`${num} is ${squared} when doubled`);
+                }
+            })
+            .then(message => {
+                result.textContent = message;
+                result.className = 'result success';
+            })
+            .catch(error => {
+                result.textContent = error;
+                result.className = 'result error';
+            });
+        }
+
+        // Exercise 8
+        function exercise8() {
+            const input = document.getElementById('input8').value;
+            const result = document.getElementById('result8');
+            
+            result.textContent = "Please wait 5 seconds...";
+            result.className = 'result loading';
+            
+            new Promise((resolve, reject) => {
+                const num = parseInt(input);
+                if (isNaN(num) || input.trim() === "") {
+                    reject("Error: Please enter a valid integer!");
+                } else {
+                    setTimeout(() => {
+                        const cubed = num * num * num;
+                        resolve(`${num} is ${cubed} when cubed`);
+                    }, 5000);
+                }
+            })
+            .then(message => {
+                result.textContent = message;
+                result.className = 'result success';
+            })
+            .catch(error => {
+                result.textContent = error;
+                result.className = 'result error';
+            });
+        }
+
+        // Exercise 9
+        function exercise9() {
+            const input = document.getElementById('input9').value;
+            const result = document.getElementById('result9');
+            
+            if (failCount >= 3) {
+                result.textContent = "You already failed three times, so no chances anymore";
+                result.className = 'result error';
+                return;
+            }
+            
+            new Promise((resolve, reject) => {
+                const num = parseInt(input);
+                if (isNaN(num) || num < 1 || num > 10) {
+                    reject("Error: Number must be between 1 and 10!");
+                } else {
+                    resolve(`Yes ${num} is between 1 and 10`);
+                }
+            })
+            .then(message => {
+                result.textContent = message;
+                result.className = 'result success';
+                failCount = 0;
+            })
+            .catch(error => {
+                failCount++;
+                result.textContent = error + ` (Attempt ${failCount}/3)`;
+                result.className = 'result error';
+            });
+        }
+    </script>
+</body>
+</html>
